@@ -76,52 +76,52 @@ function renderCatalog() {
     });
   }
 
-function renderCards(data) {
-    const goodsWrapper = document.querySelector(".goods");
-    data.goods.forEach(good => {
-      const card = document.createElement("div");
-      card.className = "col-12 col-md-6 col-lg-4 col-xl-3";
+// function renderCards(data) {
+//     const goodsWrapper = document.querySelector(".goods");
+//     data.goods.forEach(good => {
+//       const card = document.createElement("div");
+//       card.className = "col-12 col-md-6 col-lg-4 col-xl-3";
   
-      // шаблон верстки
-      card.innerHTML = `     
-                  <div class="card" data-category = "${good.category}">
-                  ${good.sale ? '<div class="card-sale">🔥Hot Sale🔥</div>' : ""}
-                                      <div class="card-img-wrapper">
-                                          <span class="card-img-top"
-                                              style="background-image: url('${good.img}')"></span>
-                                      </div>
-                                      <div class="card-body justify-content-between">
-                                          <div class="card-price" style="${good.sale ? "color: red" : ""}">${
-        good.price
-      } ₽</div>
-                                          <h5 class="card-title">${good.title}</h5>
-                                          <button class="btn btn-primary">В корзину</button>
-                                      </div>
-                                  </div>
-      `;
-      goodsWrapper.appendChild(card);
-    });
-  }
+//       // шаблон верстки
+//       card.innerHTML = `     
+//                   <div class="card" data-category = "${good.category}">
+//                   ${good.sale ? '<div class="card-sale">🔥Hot Sale🔥</div>' : ""}
+//                                       <div class="card-img-wrapper">
+//                                           <span class="card-img-top"
+//                                               style="background-image: url('${good.img}')"></span>
+//                                       </div>
+//                                       <div class="card-body justify-content-between">
+//                                           <div class="card-price" style="${good.sale ? "color: red" : ""}">${
+//         good.price
+//       } ₽</div>
+//                                           <h5 class="card-title">${good.title}</h5>
+//                                           <button class="btn btn-primary">В корзину</button>
+//                                       </div>
+//                                   </div>
+//       `;
+//       goodsWrapper.appendChild(card);
+//     });
+//   }
 
-function getData() {
-    const goodsWrapper = document.querySelector(".goods");
-    return fetch("../db/db.json")
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error("Данные не были получены , ошибка: " + response.status);
-        }
-      })
-      .then(data => {
-        return data;
-      })
-      .catch(err => {
-        console.warn(err);
-        goodsWrapper.innerHTML =
-          '<div style ="color:red; font-size: 30px">Упс, что-то пошло не так!</div>';
-      });
-  }
+// function getData() {
+//     const goodsWrapper = document.querySelector(".goods");
+//     return fetch("../db/db.json")
+//       .then(response => {
+//         if (response.ok) {
+//           return response.json();
+//         } else {
+//           throw new Error("Данные не были получены , ошибка: " + response.status);
+//         }
+//       })
+//       .then(data => {
+//         return data;
+//       })
+//       .catch(err => {
+//         console.warn(err);
+//         goodsWrapper.innerHTML =
+//           '<div style ="color:red; font-size: 30px">Упс, что-то пошло не так!</div>';
+//       });
+//   }
 
 function filter() {
     const cards = document.querySelectorAll(".goods .card"),
@@ -222,14 +222,13 @@ function actionPage() {
 
 
 
-getData().then(data => {
-    renderCards(data);
+
     renderCatalog();
     toggleCheckbox();
     toggleCart();
     addCart();
     actionPage();
-  });
+
   
   
   
